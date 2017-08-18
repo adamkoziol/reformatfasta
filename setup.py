@@ -13,5 +13,6 @@ setup(
     description='Fasta file reformatting script',
     url='https://github.com/adamkoziol/reformatfasta',
     long_description=open('README.md').read(),
-    install_requires=['biopython >= 1.65'],
+    install_requires=['biopython >= 1.65',
+                      'OLCTools'],
 )

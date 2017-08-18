@@ -22,15 +22,21 @@ python setup.py install
 
 `python reformatfasta.py path -s path/to/sequences`
 
-Required arguments:
+##### Required arguments:
 
 * path to the folder to be used to store results
 * -s: path to folder containing sequences. I normally set this to be /path/sequences
 
+##### Optional arguments:
+
+* -S: Split a multifasta file into properly formatted individual files
+* -u: Remove duplicate sequences (duplicates are interpreted as identical at the sequence level; 
+the name of the sequence is not taken into account) 
+
 See usage below:
 
 ```
-usage: reformatfasta.py [-h] -s SEQUENCEPATH path
+usage: reformatfasta.py [-h] -s SEQUENCEPATH [-S] [-u] path
 
 Produce consistently formatted .fasta files from "questionably"
 formatted.fasta files
@@ -42,4 +48,6 @@ optional arguments:
   -h, --help            show this help message and exit
   -s SEQUENCEPATH, --sequencepath SEQUENCEPATH
                         Path of sequence files
+  -S, --split           Split a multifasta into individual files
+  -u, --unique          Remove duplicate sequences when formatting the .fasta
 ```

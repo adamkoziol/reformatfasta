@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 from glob import glob
 from Bio import SeqIO
 import shutil
@@ -44,7 +43,7 @@ class Format(object):
         """
         Reformat the .fasta files with BioPython
         """
-        print('Reformatting files')
+        printtime('Reformatting files', self.start)
         for fasta in self.strains:
             # Store the name and extension of the .fasta file
             name, extension = os.path.basename(fasta).split('.')
@@ -92,7 +91,7 @@ class Format(object):
         """
         Correctly format FASTA files, and write individual records to files
         """
-        print('Reformatting and splitting files')
+        printtime('Reformatting and splitting files', self.start)
         self.make_path(self.splitpath)
         for fasta in self.strains:
             if self.unique:
@@ -126,6 +125,7 @@ class Format(object):
 
     def __init__(self, args):
         self.path = args.path
+        self.start = args.start
         self.sequencepath = os.path.join(args.sequencepath, '')
         self.formattedpath = os.path.join(self.path, 'formattedfiles', '')
         self.splitpath = os.path.join(self.path, 'splitfiles')
@@ -166,8 +166,8 @@ if __name__ == '__main__':
     arguments = parser.parse_args()
 
     # Define the start time
-    start = time.time()
+    arguments.start = time.time()
     # Run it
     Format(arguments)
     # Print a bold, green exit statement
-    print('\033[92m' + '\033[1m' + "\nElapsed Time: %0.2f seconds" % (time.time() - start) + '\033[0m')
+    print('\033[92m' + '\033[1m' + "\nElapsed Time: %0.2f seconds" % (time.time() - arguments.start) + '\033[0m')
